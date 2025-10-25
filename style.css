@@ -1,0 +1,325 @@
+/* Webフォントのインポート例 (行書体に似たフォントがないため、ここでは標準の游明朝や明朝体に近いものを使います。
+   実際の行書体フォントを使いたい場合は、別途Webフォントサービスを利用する必要があります。
+   ここでは、代替として'ヒラギノ明朝 ProN', 'HiraMin ProN', 'serif'を指定します。) */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap');
+
+/* 全体のリセットと基本設定 */
+body {
+    background-color: #1a1a1a; /* 黒っぽい背景 */
+    color: #ffffff;           /* 白い文字 */
+    font-family: 'HiraMin ProN', '游明朝', YuMincho, 'MS PMincho', serif; /* 行書体の代替として明朝系 */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* 行書体風のフォント設定 */
+h1, h2, h3, nav a, button {
+    font-family: "教科書体", "HG行書体", "HGP行書体", "游明朝", YuMincho, serif; /* 行書体、教科書体の代替フォントを優先 */
+    font-weight: normal; 
+}
+
+/* サイトタイトル (中央寄せは維持) */
+.site-title {
+    color: #cc0000; 
+    text-align: center;
+    padding: 20px 0;
+    font-size: 4.0em;
+    border-bottom: 2px solid #cc0000;
+}
+
+/* メインコンテンツエリアを中央寄せにするための設定 */
+main {
+    max-width: 960px; /* コンテンツの最大幅を設定 */
+    margin: 0 auto;    /* 左右マージンを自動調整して中央寄せ */
+    padding: 20px 0;
+}
+
+/* メニューバー（ナビゲーション） (前回と同じ) */
+nav {
+    background-color: #333; 
+    text-align: center;
+}
+
+.menu-bar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; 
+    justify-content: center;
+}
+
+.menu-bar li {
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+.menu-bar a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background-color 0.3s;
+}
+
+/* ホバー効果: カーソルを合わせると背景が青くなる (前回と同じ) */
+.menu-bar a:hover {
+    background-color: #007bff; 
+    color: #ffffff;
+}
+
+/* メインコンテンツのセクション */
+.content-section {
+    padding: 40px 5%; /* 左右のパディングは少し残す */
+    padding-top: 20px; /* 必要に応じて調整 */
+    margin-bottom: 30px;
+    border-bottom: 1px solid #444;
+    text-align: center; /* **セクション内の文字を中央寄せ** */
+}
+
+/* テキスト（pタグなど）の表示を整えるため、テキストの寄せ方を調整 */
+.content-section p, .content-section table, .content-section form {
+    text-align: left; /* コンテンツ内のテキストは読みやすさのため左寄せに戻す */
+    margin: 20px auto; /* フォームやテーブル自体を中央寄せ */
+    max-width: 600px; /* フォームなどの幅を制限 */
+}
+
+/* テーブルスタイル (スケジュール用) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #444;
+    padding: 10px;
+    /* text-align: left; のまま */
+}
+
+/* フォームの基本スタイル */
+form {
+    text-align: left; /* フォームの要素を左揃えに戻す */
+}
+
+form input[type="text"], form input[type="email"], form textarea {
+    /* width: 100%; のまま */
+    max-width: 600px; /* フォーム要素の幅を制限 */
+}
+
+form button {
+    /* text-align: center に戻す */
+    margin: 20px auto 0; /* ボタンは中央寄せ */
+    width: 200px;
+}
+
+/* フッター (中央寄せは維持) */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #000;
+    font-size: 0.8em;
+    border-top: 1px solid #cc0000;
+}
+
+/* --------------------------------- */
+/* --- メディアギャラリー用スタイル --- */
+
+/* 写真/動画のセクション見出しを調整 */
+.media-subtitle {
+    color: #ff8c00; /* オレンジ系の色 */
+    font-size: 1.5em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center; /* 中央寄せ */
+}
+
+/* グリッドコンテナ（3列レイアウト） */
+.grid-container {
+    display: grid;
+    /* 3つの列を均等な幅で作成 */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px; /* アイテム間の隙間 */
+    margin: auto auto;
+    /* グリッドコンテナ自体を中央寄せに保つため、max-widthはmainの幅に合わせて適宜調整 */
+    max-width: 900px;
+    padding: 0 10px; /* 画面端に近すぎないようにパディング */
+}
+
+/* 各写真/動画の枠 */
+.media-item {
+    background-color: #2a2a2a; /* 枠の背景色 */
+    border: 1px solid #444;
+    padding: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* 枠内の文字を中央寄せ */
+}
+
+/* 画像が枠をはみ出さないように設定 */
+.media-item img, 
+.media-item iframe {
+    width: 100%;
+    height: auto;
+    display: block; /* 余分なスペースを削除 */
+}
+
+/* 項目を分けた間の区切り線 */
+.separator {
+    border: none;
+    border-top: 1px solid #cc0000;
+    margin: 50px auto;
+    width: 80%;
+}
+
+/* スマートフォン対応（1列表示） */
+@media (max-width: 768px) {
+    .grid-container {
+        /* 画面幅が狭くなったら1列に変更 */
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* --- 動画の縦横比を維持するためのCSS (パディングハック) --- */
+
+.video-wrapper {
+    position: relative; /* 子要素の absolute の基準にする */
+    width: 100%;
+    /* 縦横比 16:9 の場合: 9 ÷ 16 × 100% = 56.25% */
+    padding-top: 56.25%; /* これが高さになる (幅に対する割合) */
+    height: 0; /* 高さはパディングで指定したので、ここで0にする */
+    margin: 10px 0; /* 上下の余白 */
+}
+
+.video-wrapper iframe {
+    position: absolute; /* 親要素 (.video-wrapper) に合わせて配置 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* 親要素の高さ(56.25%)いっぱいを使う */
+    border: none;
+}
+
+
+/* 既存のCSSから、動画とiframeに関する不要な設定を削除または確認 */
+/* .media-item img, 
+.media-item iframe {
+    width: 100%;
+    height: auto;  <-- 動画の場合はこの設定だと崩れる原因になる
+    display: block; 
+}
+*/
+/* 上記の既存CSSがある場合、.media-item iframe の height: auto; の指定が残らないようにしてください。 */
+
+/* **確認:** 既存のCSSから以下の設定を見つけて修正/上書きしてください */
+.media-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+/* iframeについては、上記の .video-wrapper iframe の設定が優先されます */
+
+
+
+
+/* メンバーグリッドコンテナ (5列レイアウト) */
+.member-grid-container {
+    display: grid;
+    /* 5つの列を均等な幅で作成 */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px; /* アイテム間の隙間を少し狭く */
+    margin: 30px auto;
+    max-width: 960px; /* mainの幅に合わせる */
+    padding: 0 5px; 
+}
+
+/* 各メンバーアイテムのスタイル */
+.member-item {
+    background-color: #2a2a2a; /* 背景色 */
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: center; /* 枠内の文字を中央寄せ */
+}
+
+/* メンバー写真のスタイル */
+.member-photo {
+    width: 100%; /* 親要素の幅いっぱいに */
+    /* 縦横比を正方形にしたい場合は以下を追加 */
+    aspect-ratio: 1 / 1;
+    object-fit: cover; /* 画像が枠内に収まるように */
+    border-radius: 50%; /* 写真を丸くしたい場合は追加 (不要なら削除) */
+    border: 3px solid #cc0000; /* 赤い枠線 */
+    margin-bottom: 10px;
+}
+
+/* メンバー名のスタイル */
+.member-name {
+    font-weight: bold;
+    color: #ffffff;
+    margin: 5px 0 2px 0;
+    text-align: center; /* 中央寄せを適用 */
+}
+
+/* 役割のスタイル */
+.member-role {
+    font-size: 0.8em;
+    color: #ccc;
+    margin: 0;
+    text-align: center; /* 中央寄せを適用 */
+}
+
+/* --- スマートフォン対応の追加 --- */
+@media (max-width: 960px) {
+    /* 画面幅が中程度の場合 (タブレット横など) は3列に */
+    .member-grid-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    /* 画面幅が狭い場合 (スマホ) は2列に */
+    .member-grid-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ホームのヒーロー画像（透明なロゴなど） */
+.hero-image-container {
+    text-align: center; /* 画像を中央寄せにする */
+    margin: 40px auto; /* 上下に余白を設定 */
+    padding: 0 10px; /* 左右のパディング */
+    max-width: 800px; /* コンテナの最大幅 */
+}
+
+.transparent-hero-image {
+    max-width: 100%; 
+    height: auto; 
+    /* opacity: 0.9;  <-- 必要に応じて残すか削除してください */
+    display: block; 
+    margin: 0 auto; 
+
+    /* === ここから追加または修正 === */
+    /* 画像の周りにぼかし効果のある影を追加 */
+    /* box-shadow: (水平方向のオフセット) (垂直方向のオフセット) (ぼかしの半径) (広がり半径) (色); */
+    /* 白っぽい、広範囲なぼかし */
+    /* box-shadow: 0 0 30px rgba(255, 255, 255, 0.7); */
+    /* または、より暗い背景に馴染むように */
+    /* box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);  黒っぽい、より強いぼかし */
+    /* または、画像の主要な色に合わせて調整 */
+    /* box-shadow: 0 0 30px rgba(204, 0, 0, 0.6); 赤っぽいぼかし (サイトのアクセントカラーに合わせる) */
+
+    /* ぼかしエフェクトの例 (画像自体をぼかす場合)
+       filter: blur(5px);
+       これは画像全体がぼやけるので、今回の用途にはあまり向かないかもしれません。
+    */
+}
+
+/* スマートフォンでの表示調整 */
+@media (max-width: 768px) {
+    .hero-image-container {
+        margin: 20px auto; /* スマホでは余白を少し減らす */
+    }
+    .transparent-hero-image {
+        max-width: 90%; /* スマホではもう少し小さくする */
+    }
+}
