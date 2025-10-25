@@ -171,15 +171,6 @@ footer {
     width: 80%;
 }
 
-/* スマートフォン対応（1列表示） */
-@media (max-width: 768px) {
-    .grid-container {
-        /* 画面幅が狭くなったら1列に変更 */
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-}
-
 /* --- 動画の縦横比を維持するためのCSS (パディングハック) --- */
 
 .video-wrapper {
@@ -314,12 +305,122 @@ footer {
     */
 }
 
-/* スマートフォンでの表示調整 */
-@media (max-width: 768px) {
-    .hero-image-container {
-        margin: 20px auto; /* スマホでは余白を少し減らす */
+/* スケジュール表のコンテナを追加し、スクロール可能にする */
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* 横に長い場合にスクロールバーを表示 */
+    -webkit-overflow-scrolling: touch; /* iOSで滑らかなスクロールを実現 */
+}
+
+table {
+    /* 必要に応じて minimum width を設定し、横スクロールを許可 */
+    min-width: 20px; /* スケジュール表がこの幅より狭くならないようにする */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+
+
+
+/* -------------------------------------- */
+/* --- レスポンシブメニュー関連のCSS追記 --- */
+/* -------------------------------------- */
+
+/* ハンバーガーボタンの基本スタイル（PCでは非表示） */
+.menu-toggle {
+    display: none; /* デフォルトで非表示 */
+    position: absolute;
+    top: 25px; /* headerから少し下に */
+    right: 15px; /* 右上に配置 */
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1001; /* メニューの上に配置 */
+}
+
+/* ハンバーガーアイコンの線 */
+.icon-bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 6px 0;
+    transition: 0.3s;
+}
+
+/* メニューの初期状態（PCでは表示、スマホでは非表示・透過） */
+.main-nav {
+    transition: opacity 0.5s ease-in-out; /* フェードイン・アウト用のトランジション */
+}
+
+
+/* -------------------------------------- */
+/* --- メディアクエリ (スマホ用レイアウト) --- */
+/* -------------------------------------- */
+@media (max-width: 768px) { /* 768px以下の画面で適用 */
+    
+    /* 1. ハンバーガーボタンを表示 */
+    .menu-toggle {
+        display: block;
     }
-    .transparent-hero-image {
-        max-width: 90%; /* スマホではもう少し小さくする */
+
+    /* 2. PC用のメニュー配置をリセット */
+    .site-title {
+        text-align: left; /* タイトルを左寄せにするなど、ボタンとの干渉を避ける */
+        padding-left: 15px;
     }
+    
+    /* 3. ナビゲーションメニューを非表示状態にする */
+    .main-nav {
+        display: none; /* JSでopacityを操作するため、初期状態はdisplay:noneにする */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* 画面全体を覆う */
+        background-color: rgba(26, 26, 26, 0.95); /* 半透明の黒背景 */
+        z-index: 1000;
+        padding-top: 60px; /* タイトルやボタンと重ならないように */
+        box-sizing: border-box;
+    }
+
+    /* メニュー表示/非表示のクラス (JSで切り替え) */
+    .main-nav.is-open {
+        display: block;
+        opacity: 1;
+    }
+    .main-nav.is-closed {
+        display: none;
+        opacity: 0;
+    }
+    
+    /* 4. メニューの項目を縦並びにする */
+    .menu-bar {
+        flex-direction: column; /* 縦並び */
+        align-items: center;
+        padding-top: 50px;
+    }
+
+    .menu-bar li {
+        width: 80%; /* 幅を広げる */
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+    
+    .menu-bar a {
+        padding: 20px;
+        font-size: 1.2em;
+        border: 1px solid #444;
+    }
+    
+    /* PCでのメニューの横書き（元の設定）をスマホでは上書き */
+    .menu-bar {
+        /* デフォルトのflex設定がスマホで縦書きに見える原因でした。
+           flex-direction: column; で縦書き（縦並び）に修正 */
+    }
+
 }
